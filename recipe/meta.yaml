@@ -1,5 +1,5 @@
 {% set name = "txl-local-kernels" %}
-{% set version = "0.2.13" %}
+{% set version = "0.2.14" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/txl_local_kernels-{{ version }}.tar.gz
-  sha256: 74f0c71822b7767186ac372bd8aeb4c8b81bd5d2294e138b74b4335a170eb2cd
+  sha256: fd661b091787bcfbc9da3bd1378bfa035b9a09f93c16ed5d2590257bcbfa3a61
 
 build:
   noarch: python
@@ -21,7 +21,7 @@ requirements:
     - hatchling
   run:
     - python >=3.10
-    - txl
+    - txl >=0.2.18,<0.3.0
     - txl-kernel
     - pyzmq >=24.0.1
     - ipykernel
