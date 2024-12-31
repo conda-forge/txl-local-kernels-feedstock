@@ -1,3 +1,4 @@
+{% set python_min = '3.10' %}
 {% set name = "txl-local-kernels" %}
 {% set version = "0.2.14" %}
 
@@ -6,21 +7,21 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/txl_local_kernels-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/txl_local_kernels-{{ version }}.tar.gz
   sha256: fd661b091787bcfbc9da3bd1378bfa035b9a09f93c16ed5d2590257bcbfa3a61
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
 
 requirements:
   host:
-    - python >=3.10
+    - python {{ python_min }}
     - pip
     - hatchling
   run:
-    - python >=3.10
+    - python >={{ python_min }}
     - txl >=0.2.18,<0.3.0
     - txl-kernel
     - pyzmq >=24.0.1
@@ -33,6 +34,8 @@ test:
   #   - pip
   # commands:
   #   - pip check
+  requires:
+    - python {{ python_min }}
   imports:
     - txl_local_kernels
 
